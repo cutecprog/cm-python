@@ -11,14 +11,44 @@ with open('../Downloads/pvs.csv', 'rb') as csvfile:
         for row in file1:
                 data1.append(row)
 with open('../Downloads/candidates-01-02-2013-andrea.csv', 'rb') as csvfile:
-        dialect = csv.Sniffer().sniff(csvfile.read(1024))
+        dialect = csv.Sniffer().sniff(csvfile.read(10240))
         csvfile.seek(0)
         file2 = csv.reader(csvfile, dialect)
         for row in file2:
                 data2.append(row)
-print data1
-raw_input()
-print data2
+def match(d1, data2):
+        j=0
+        index = []
+        for d2 in data2:
+                if d1[1].lower() == d2[9].lower() and d1[2].lower() == d2[7].lower():
+                        print d2[0], '|', d2[4], '|', d2[21], '|', d2[22]
+                        index.append(j)
+                j+=1
+        return index
+i=0
+k=0
+for n in data1:
+        j = match(n,data2)
+        if j != []:
+                print k, i, j
+                k += 1
+        i += 1
+
+
+# A not working prototype for gen_match_key()...I know I'm bad
+'''lastname1 = zip(*data1)[1]
+lastname2 = zip(*data2)[9]
+lastname1 = sorted(lastname1)
+lastname2 = sorted(lastname2)
+match_key = []
+for i in range(0,len(lastname1)):
+        j = 0
+        while j < len(lastname2)\
+                        and lastname1[i].lower() != lastname2[j].lower()\
+                        and 1==1:
+                j += 1
+        match_key.append(j)
+print match_key'''
 
 def main():
         pass
@@ -57,13 +87,14 @@ def col_as_int(col):
         """
         pass
 
-def match(item, match_col):
+def match(item, match_data, col_select):
         """Search for an item in a column and return index into that column.
         
-        >>> match('hat', ['cat','bat','hat','wat'])
-        2
-        >>> match('wat*', ['fire','earth','air','water'])
-        3
+        >>> match(['smith','john'], [['1232','smith','jane'],['2343','smith','john']], [1,2])
+        1
+        >>> match(['232324','foo','bar','smith','trash','john'],\
+                 [['1232','smith','jane'],['2343','smith','john']], [,,,1,,2])
+        1
         
         """
         pass
