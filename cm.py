@@ -35,7 +35,7 @@ def match(item, match_col):
         
         >>> match('hat', ['cat','bat','hat','wat'])
         2
-        >>> match('wat*, ['fire','earth','air','water'])
+        >>> match('wat*', ['fire','earth','air','water'])
         3
         
         """
