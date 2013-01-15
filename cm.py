@@ -2,6 +2,16 @@
 
 def main():
         pass
+        '''file1 = open("pvs.csv", "r")
+        file2 = open("other_data.csv", "r")
+        match_col = [0, 0]
+        data = []
+        data.append(csv_to_list(file1.read()))
+        data.append(csv_to_list(file2.read()))
+        row_num = len(data[0])
+        match_key = []
+        for i in range(0, row_num):
+                match_key.append(match(data[0][i'''
 
 def col_as_int(col):
         """Convert column label to integer.
